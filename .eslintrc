@@ -1,0 +1,111 @@
+{
+  "plugins": ["prettier", "@typescript-eslint", "react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier", "plugin:import/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    },
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "fragment": "Fragment",
+      "version": "detect",
+      "flowVersion": "0.53"
+    },
+    "propWrapperFunctions": [
+      "forbidExtraProps",
+      { "property": "freeze", "object": "Object" },
+      { "property": "myFavoriteWrapper" },
+      { "property": "forbidExtraProps", "exact": true }
+    ],
+    "componentWrapperFunctions": [
+      "observer",
+      { "property": "styled" },
+      { "property": "observer", "object": "Mobx" },
+      { "property": "observer", "object": "<pragma>" }
+    ],
+    "formComponents": ["CustomForm", { "name": "Form", "formAttribute": "endpoint" }],
+    "linkComponents": ["Hyperlink", { "name": "Link", "linkAttribute": "to" }]
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "object-curly-spacing": ["warn", "always"],
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      "error",
+      {
+        "ignoreRestArgs": true
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true
+      }
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "react/jsx-key": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.js", "**/*.test.jsx", "**/*.test.ts", "**/*.test.tsx", "src/tests/**/*"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-boolean-value": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/destructuring-assignment": "off",
+    "@typescript-eslint/comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "only-multiline",
+        "functions": "never"
+      }
+    ]
+  },
+  "ignorePatterns": ["src/**/*.test.*"],
+  "globals": {
+    "JSX": "readonly"
+  },
+  "env": {
+    "browser": true,
+    "jest": true
+  }
+}

@@ -1,0 +1,21 @@
+name: publish-react-csv-pooling-hook-in-npm-on-release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 17
+      - run: npm install
+      - run: npm run lint
+      - run: npm run test
+      # - run: npm run test
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}

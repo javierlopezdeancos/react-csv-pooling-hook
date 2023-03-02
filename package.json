@@ -1,0 +1,98 @@
+{
+  "name": "react-csv-pooling-hook",
+  "version": "0.1.0",
+  "main": "./lib/cjs/index.min.js",
+  "module": "./lib/esm/index.min.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "engines": {
+    "node": ">=19.6.1",
+    "npm": ">=9.4.0"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:esm && npm run minimize:esm && npm run build:cjs && npm run minimize:cjs && build:coverage:shield",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "minimize:esm": "npx uglifyjs ./lib/esm/index.js --output ./lib/esm/index.min.js",
+    "minimize:cjs": "npx uglifyjs ./lib/cjs/index.js --output ./lib/cjs/index.min.js",
+    "build:coverage:shield": "./node_modules/jest-coverage-shield/lib/cli.js -d ./coverage",
+    "format": "npx prettier --write 'src/**/*.{ts,tsx}'",
+    "lint": "npx eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "lint:fix": "npx eslint --ext .js,.jsx,.ts,.tsx src --color --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage && coverage-shield && npm run build:coverage:shield",
+    "prepare": "npx husky install && npx husky set .husky/pre-commit 'npx lint-staged' && git add .husky/pre-commit",
+    "uninstall-husky": "npm uninstall husky --no-save && git config --unset core.hooksPath && npx rimraf .husky",
+    "update:check": "npx npm-check-updates"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "(/__mocks__/.*|\\.(mock))\\.(ts|tsx|js)$"
+    ],
+    "collectCoverageFrom": [
+      "src/*.{ts,tsx}"
+    ],
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javierlopezdeancos/react-network-state-hook.git"
+  },
+  "keywords": [
+    "typescript",
+    "react"
+  ],
+  "author": {
+    "name": "Javier Lopez de Ancos",
+    "email": "javierlopezdeancos@outlook.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/javierlopezdeancos/react-csv-pooling-hook/issues"
+  },
+  "homepage": "https://github.com/javierlopezdeancos/react-csv-pooling-hook#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.4.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@typescript-eslint/eslint-plugin": "5.48.1",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-import-resolver-typescript": "3.5.3",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "husky": "8.0.3",
+    "lint-staged": "^13.1.2",
+    "jest": "^29.4.3",
+    "jest-config": "^29.4.3",
+    "jest-coverage-shield": "^1.1.2",
+    "jest-environment-jsdom": "^29.4.3",
+    "prettier": "2.8.4",
+    "prettier-eslint": "15.0.1",
+    "prettier-eslint-cli": "7.1.0",
+    "ts-jest": "^29.0.5",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0"
+  }
+}
